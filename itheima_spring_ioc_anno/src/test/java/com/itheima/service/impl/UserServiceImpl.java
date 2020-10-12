@@ -12,7 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 
-//    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl">
+//    <bean id="userService" class="com.itheima.com.itheima.service.impl.UserServiceImpl">
 //@Component("userService")
 @Service("userService1")
 public class UserServiceImpl implements UserService {
