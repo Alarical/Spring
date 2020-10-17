@@ -5,10 +5,7 @@ import com.itheima.domain.User;
 import com.itheima.domain.Vo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServlet;
@@ -21,6 +18,23 @@ import java.util.List;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+    //请求头
+    @RequestMapping(value = "/quick20")
+    @ResponseBody
+    public void save20(@RequestHeader(value = "User-Agent",required = false) String useragetn) throws IOException {
+        System.out.println(useragetn);
+    }
+
+
+
+    //requestParam
+    @RequestMapping(value = "/quick16")
+    @ResponseBody
+    public void save16(@RequestParam(value = "name",required = false,defaultValue = "123") String username) throws IOException {
+        System.out.println(username);
+    }
+
 
     //集合
     @RequestMapping(value = "/quick15")
