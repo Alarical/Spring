@@ -10,6 +10,7 @@
         <module name="itheima_spring_jdbc" />
         <module name="itheima_spring_aop" />
         <module name="itheima_spring_mvc" />
+        <module name="itheima_spring_test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,6 +20,7 @@
       <module name="itheima_spring_ioc_anno" target="1.5" />
       <module name="itheima_spring_jdbc" target="1.5" />
       <module name="itheima_spring_mvc" target="1.7" />
+      <module name="itheima_spring_test" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

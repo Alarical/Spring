@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--  1.加载jdbc property  -->
+    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+    <!--  2.配置数据源对象 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"></property>
+        <property name="jdbcUrl" value="${jdbc.url}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <property name="user" value="${jdbc.username}"></property>
+    </bean>
+    <!--  3.配置JdbcTemple对象 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!--  4。配置roleService  -->
+    <bean id="roleService" class="com.itheima.service.impl.RoleServiceImpl">
+        <property name="roleDao" ref="roleDao"></property>
+    </bean>
+
+    <bean id="roleDao" class="com.itheima.dao.impl.RoleDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
+
+    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"></property>
+        <property name="roleDao" ref="roleDao"></property>
+    </bean>
+
+    <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
+
+</beans>
