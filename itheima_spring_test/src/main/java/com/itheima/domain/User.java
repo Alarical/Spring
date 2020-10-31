@@ -9,6 +9,7 @@ public class User {
     private String email;
     private String password;
     private String phoneNum;
+    private List<Role> roles;
 
     public List<Role> getRoles() {
         return roles;
@@ -18,7 +19,6 @@ public class User {
         this.roles = roles;
     }
 
-    private List<Role> roles;
 
     public Long getId() {
         return id;

@@ -8,7 +8,7 @@ import com.itheima.service.UserService;
 
 import java.util.List;
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements  UserService {
 
     private UserDao userDao;
     public void setUserDao(UserDao userDao) {
@@ -30,5 +30,20 @@ public class UserServiceImpl implements UserService {
             user.setRoles(roles);
         }
         return userList;
+    }
+
+    @Override
+    public void save(User user, long[] roleIds) {
+        //向user表里存数据；
+        Long userId = userDao.save(user);
+        // 向sys_user_role 关系表里存多条数据
+        userDao.saveUserRoleRel(userId,roleIds);
+    }
+
+    @Override
+    public void del(Long userId) {
+        //删关系表和原始表
+        userDao.delUserRoleRel(userId);
+        userDao.delUser(userId);
     }
 }
